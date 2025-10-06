@@ -1,5 +1,7 @@
 # 🍩 TO-DONUT - Gerenciador de Tarefas Delicioso! 🍩
 from colorama import Fore, Back, Style, init
+import json
+import os
 
 # Inicializar colorama
 init(autoreset=True)
@@ -11,6 +13,36 @@ MORANGO = Fore.LIGHTRED_EX
 BAUNILHA = Fore.LIGHTCYAN_EX
 POLVILHO = Fore.LIGHTWHITE_EX
 CARAMELO = Fore.LIGHTYELLOW_EX
+
+# Arquivo de persistência
+ARQUIVO_TAREFAS = 'tarefas.json'
+
+def carregar_tarefas():
+    """Carrega tarefas do arquivo JSON"""
+    if os.path.exists(ARQUIVO_TAREFAS):
+        try:
+            with open(ARQUIVO_TAREFAS, 'r', encoding='utf-8') as arquivo:
+                dados = json.load(arquivo)
+                tarefas = dados.get('tarefas', [])
+                if tarefas:
+                    print(f"{BAUNILHA}🍩 Carregando sua caixa de donuts... ✓{Style.RESET_ALL}")
+                    print(f"{CARAMELO}🍩 {len(tarefas)} donut(s) encontrado(s)!{Style.RESET_ALL}\n")
+                return tarefas
+        except json.JSONDecodeError:
+            print(f"{MORANGO}🍩 Ops! Arquivo corrompido. Criando caixa nova...{Style.RESET_ALL}\n")
+            return []
+        except Exception as e:
+            print(f"{MORANGO}🍩 Erro ao carregar: {e}{Style.RESET_ALL}\n")
+            return []
+    return []
+
+def salvar_tarefas(tarefas):
+    """Salva tarefas no arquivo JSON"""
+    try:
+        with open(ARQUIVO_TAREFAS, 'w', encoding='utf-8') as arquivo:
+            json.dump({'tarefas': tarefas}, arquivo, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"{MORANGO}🍩 Erro ao salvar: {e}{Style.RESET_ALL}")
 
 def banner():
     print(f"\n{ROSA_DONUT}{'='*60}")
@@ -29,6 +61,7 @@ def adicionar_tarefa(tarefas, nome_tarefa):
     import random
     print(f"{MORANGO}{random.choice(frases)}{Style.RESET_ALL}")
     print(f"{POLVILHO}   → {nome_tarefa}{Style.RESET_ALL}")
+    salvar_tarefas(tarefas)
     return
 
 def ver_tarefas(tarefas):
@@ -58,6 +91,7 @@ def atualizar_tarefa(tarefas, indice, novo_nome_tarefa):
         tarefas[indice_tarefa_ajustado]["nome"] = novo_nome_tarefa
         print(f"{BAUNILHA}🍩 Donut reformulado! Nova receita aplicada!{Style.RESET_ALL}")
         print(f"{POLVILHO}   → {novo_nome_tarefa}{Style.RESET_ALL}")
+        salvar_tarefas(tarefas)
     else:
         print(f"{MORANGO}🍩 Ops! Esse donut não existe na caixa...{Style.RESET_ALL}")
     return
@@ -73,6 +107,7 @@ def concluir_tarefa(tarefas, indice):
     ]
     import random
     print(f"{Fore.GREEN}{random.choice(frases)}{Style.RESET_ALL}")
+    salvar_tarefas(tarefas)
     return
 
 def remover_tarefas_concluidas(tarefas):
@@ -82,14 +117,16 @@ def remover_tarefas_concluidas(tarefas):
             tarefas.remove(tarefa)
     if count > 0:
         print(f"{CARAMELO}🍩 Limpando as migalhas... {count} donut(s) removido(s)!{Style.RESET_ALL}")
+        salvar_tarefas(tarefas)
     else:
         print(f"{CHOCOLATE}🍩 Nenhuma migalha pra limpar! Caixa já está limpa!{Style.RESET_ALL}")
     return
 
-tarefas = []
-
 # Mostrar banner inicial
 banner()
+
+# Carregar tarefas salvas
+tarefas = carregar_tarefas()
 
 while True:
     print(f"\n{ROSA_DONUT}╔══════════════════════════════════════════════════════════╗")
@@ -129,6 +166,8 @@ while True:
         ver_tarefas(tarefas)
 
     elif opcao == '6':
+        salvar_tarefas(tarefas)
+        print(f"\n{BAUNILHA}🍩 Salvando sua caixa de donuts... ✓{Style.RESET_ALL}")
         print(f"\n{ROSA_DONUT}{'='*60}")
         print(f"{CARAMELO}   🍩 Obrigado por visitar a TO-DONUT! Volte sempre! 🍩")
         print(f"{ROSA_DONUT}{'='*60}{Style.RESET_ALL}\n")

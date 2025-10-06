@@ -57,6 +57,21 @@ Usando a biblioteca **Colorama**, o TO-DONUT traz:
 - 🍩 **Donut Fresco** (Amarelo) - Tarefa pendente esperando
 - 🍩✨ **Donut Saboreado** (Verde) - Tarefa concluída com brilho!
 
+### 💾 Persistência de Dados (JSON)
+
+**Suas tarefas são salvas automaticamente!** O TO-DONUT utiliza um arquivo `tarefas.json` para armazenar todas as suas tarefas de forma permanente.
+
+**Como funciona:**
+- ✅ **Carregamento automático** - Ao abrir o programa, suas tarefas são carregadas
+- ✅ **Salvamento automático** - Cada ação (adicionar, concluir, atualizar, remover) salva instantaneamente
+- ✅ **Backup seguro** - Nunca perca suas tarefas, mesmo fechando o terminal
+- ✅ **Formato JSON** - Arquivo legível e fácil de fazer backup
+
+**Mensagens do sistema:**
+- Ao iniciar: "🍩 Carregando sua caixa de donuts... ✓"
+- Ao sair: "🍩 Salvando sua caixa de donuts... ✓"
+- Arquivo corrompido: "🍩 Ops! Arquivo corrompido. Criando caixa nova..."
+
 ### 💬 Frases de Efeito Aleatórias
 
 Cada ação exibe uma frase motivacional aleatória:
@@ -207,6 +222,13 @@ Verde = Fore.GREEN                    # Tarefas concluídas
 - Agradecimento temático
 - Formatação colorida
 
+#### ✅ **8. Sistema de Persistência JSON**
+- Salvamento automático após cada ação
+- Carregamento automático ao iniciar
+- Arquivo `tarefas.json` para armazenar dados
+- Tratamento de erros (arquivo corrompido, etc)
+- Mensagens de confirmação coloridas
+
 ### 🔧 Como Personalizar Ainda Mais
 
 **Adicionar novas frases:**
@@ -273,6 +295,14 @@ colorama>=0.4.6  # Para cores multiplataforma no terminal
 Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 ## 🎉 Changelog
+
+### v2.1.0 - Sistema de Persistência (Atual)
+- ✅ **Persistência com JSON** - Suas tarefas são salvas automaticamente!
+- ✅ Carregamento automático ao iniciar o programa
+- ✅ Salvamento automático após cada ação
+- ✅ Tratamento de erros para arquivos corrompidos
+- ✅ Mensagens coloridas de confirmação (carregando/salvando)
+- ✅ Arquivo `tarefas.json` para backup fácil
 
 ### v2.0.0 - Personalização Donut Completa
 - ✅ Adicionado sistema completo de cores com Colorama
