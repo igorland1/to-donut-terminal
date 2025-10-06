@@ -46,16 +46,93 @@ Usando a biblioteca **Colorama**, o TO-DONUT traz:
 ### 🍩 Menu da Doceria
 | Opção | Ação | Descrição |
 |-------|------|-----------|
-| **[1] 🍩 Adicionar Donut** | Criar tarefa | "Que sabor de donut você quer criar?" |
-| **[2] 🍩 Ver Caixa de Donuts** | Listar tarefas | Visualize sua caixa de donuts |
+| **[1] 🍩 Adicionar Donut** | Criar tarefa | Com prioridade e tags! |
+| **[2] 🍩 Ver Caixa de Donuts** | Listar tarefas | Visualize com cores por prioridade |
 | **[3] 🍩 Mudar Sabor** | Atualizar | "Donut reformulado! Nova receita!" |
-| **[4] 🍩 Devorar Donut** | Concluir | "Nhac! Donut devorado com sucesso!" |
+| **[4] 🍩 Devorar Donut** | Concluir | Ganhe estatísticas e conquistas! |
 | **[5] 🍩 Limpar Migalhas** | Remover concluídas | Limpa donuts já saboreados |
-| **[6] 🍩 Fechar Doceria** | Sair | Despedida doce e colorida |
+| **[6] 🏷️ Buscar por Tag** | Filtrar | Encontre tarefas por categoria |
+| **[7] 📊 Dashboard** | Estatísticas | Veja seu progresso completo |
+| **[8] 🏆 Conquistas** | Achievements | Desbloqueie troféus! |
+| **[9] 🍩 Fechar Doceria** | Sair | Despedida doce e colorida |
 
-### 🎯 Estados Visuais das Tarefas
-- 🍩 **Donut Fresco** (Amarelo) - Tarefa pendente esperando
-- 🍩✨ **Donut Saboreado** (Verde) - Tarefa concluída com brilho!
+### 🎯 Sistema de Prioridades (Sabores de Donuts)
+
+Cada tarefa agora tem um "sabor" que representa sua prioridade:
+
+| Sabor | Emoji | Prioridade | Cor | Quando usar |
+|-------|-------|------------|-----|-------------|
+| **🍫 Chocolate** | 🍫 | Urgente | Vermelho | Tarefas críticas e urgentes |
+| **🍓 Morango** | 🍓 | Importante | Vermelho claro | Tarefas importantes mas não urgentes |
+| **🍦 Baunilha** | 🍦 | Normal | Amarelo | Tarefas do dia a dia (padrão) |
+| **🍪 Cookies** | 🍪 | Baixa | Ciano | Tarefas que podem esperar |
+
+**Como funciona:**
+- Ao criar uma tarefa, escolha o sabor/prioridade
+- As tarefas são exibidas com cores e emojis diferentes
+- Identifique visualmente o que é mais importante!
+
+### 🏷️ Sistema de Tags
+
+Organize suas tarefas com tags (categorias):
+
+**Exemplos de uso:**
+```
+#trabalho #estudos #casa #saude #urgente #projeto
+```
+
+**Funcionalidades:**
+- ✅ Adicione múltiplas tags separadas por vírgula
+- ✅ Busque tarefas por tag específica (opção 6 do menu)
+- ✅ Veja tags mais usadas no Dashboard
+- ✅ Conquista especial ao usar tags em 10 tarefas!
+
+**Exemplo:**
+```
+🍩 Nome: Finalizar relatório
+🏷️ Tags: #trabalho, #urgente, #projeto
+🍫 Prioridade: Chocolate (Urgente)
+```
+
+### 📊 Dashboard de Estatísticas
+
+Acompanhe seu progresso com estatísticas detalhadas:
+
+**O que você vê:**
+```
+📦 ESTATÍSTICAS GERAIS:
+   - Total de donuts criados
+   - Donuts frescos (pendentes)
+   - Donuts saboreados (concluídos)
+   - Taxa de conclusão
+   - 🔥 Sequência de dias usando o app
+
+🍩 DONUTS POR SABOR:
+   - Quantidade de tarefas por prioridade
+
+🏷️ TAGS MAIS USADAS:
+   - Top 5 tags mais utilizadas
+
+Progresso da caixa atual:
+   🍩🍩🍩🍩🍩▢▢▢▢▢ 50% (5/10 donuts)
+```
+
+### 🏆 Sistema de Conquistas
+
+Desbloqueie troféus ao usar o TO-DONUT:
+
+| Conquista | Descrição | Como desbloquear |
+|-----------|-----------|------------------|
+| 🥇 **Primeiro Sabor** | Complete sua primeira tarefa | Conclua 1 tarefa |
+| 🍩 **Doceiro Iniciante** | Crie 10 tarefas | Adicione 10 tarefas |
+| ⚡ **Comedor Voraz** | Complete 5 tarefas em 1 dia | Conclua 5 em um dia |
+| 🔥 **Sequência Doce** | Use por 7 dias seguidos | Acesse 7 dias consecutivos |
+| 👑 **Mestre Confeiteiro** | Complete 100 tarefas | Conclua 100 tarefas |
+| 🏷️ **Organizador** | Use tags em 10 tarefas | Adicione tags em 10 tarefas |
+
+**Notificações:**
+- Ao desbloquear uma conquista, você recebe uma notificação colorida!
+- Veja todas as conquistas (desbloqueadas e bloqueadas) na opção 8 do menu
 
 ### 💾 Persistência de Dados (JSON)
 
@@ -229,6 +306,35 @@ Verde = Fore.GREEN                    # Tarefas concluídas
 - Tratamento de erros (arquivo corrompido, etc)
 - Mensagens de confirmação coloridas
 
+#### ✅ **9. Sistema de Prioridades por Sabores**
+- 4 níveis de prioridade (Chocolate, Morango, Baunilha, Cookies)
+- Cada prioridade com emoji e cor únicos
+- Seleção interativa ao criar tarefa
+- Visualização colorida na listagem
+- Estatísticas por prioridade no Dashboard
+
+#### ✅ **10. Sistema de Tags/Categorias**
+- Adicione múltiplas tags por tarefa
+- Busca e filtro por tags
+- Lista de tags disponíveis com contadores
+- Tags mais usadas no Dashboard
+- Tags exibidas na listagem de tarefas
+
+#### ✅ **11. Dashboard de Estatísticas**
+- Total de tarefas criadas e concluídas
+- Taxa de conclusão calculada
+- Sequência de dias usando o app
+- Estatísticas por prioridade
+- Top 5 tags mais usadas
+- Barra de progresso visual
+
+#### ✅ **12. Sistema de Conquistas**
+- 6 conquistas disponíveis para desbloquear
+- Notificações animadas ao desbloquear
+- Tela dedicada para ver conquistas
+- Rastreamento automático de progresso
+- Gamificação para motivar uso contínuo
+
 ### 🔧 Como Personalizar Ainda Mais
 
 **Adicionar novas frases:**
@@ -248,14 +354,15 @@ ROSA_DONUT = Fore.LIGHTBLUE_EX  # Mude para azul claro
 
 ## 🛠️ Roadmap Futuro
 
-### 🍫 Ideias para evolução
-- [ ] Persistência de dados (JSON/SQLite)
-- [ ] Prioridades por sabor (Chocolate=urgente, Baunilha=normal)
-- [ ] Contador de donuts saboreados
-- [ ] Sistema de conquistas
-- [ ] Exportar lista para arquivo
-- [ ] Modo "Dark Chocolate" (tema escuro)
-- [ ] Integração com notificações do sistema
+### 🍫 Próximas ideias
+- [ ] ⏱️ Timer Pomodoro integrado
+- [ ] 📅 Data de vencimento para tarefas
+- [ ] 📤 Exportar lista para PDF/TXT
+- [ ] 🌙 Modo "Dark Chocolate" (tema escuro)
+- [ ] 🔔 Integração com notificações do sistema
+- [ ] 🔄 Sincronização com nuvem
+- [ ] 📱 Versão mobile companion
+- [ ] 🎨 Temas personalizáveis adicionais
 
 ## 🤝 Contribuindo
 
@@ -296,7 +403,19 @@ Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para d
 
 ## 🎉 Changelog
 
-### v2.1.0 - Sistema de Persistência (Atual)
+### v3.0.0 - Sistema Completo de Gamificação (Atual)
+- ✅ **🎯 Sistema de Prioridades** - 4 sabores de donuts (Chocolate, Morango, Baunilha, Cookies)
+- ✅ **🏷️ Sistema de Tags** - Organize tarefas com categorias personalizadas
+- ✅ **📊 Dashboard Completo** - Estatísticas detalhadas com gráficos visuais
+- ✅ **🏆 Sistema de Conquistas** - 6 troféus para desbloquear
+- ✅ **🔥 Sequência de Dias** - Rastreamento de uso consecutivo
+- ✅ **📈 Taxa de Conclusão** - Acompanhe sua produtividade
+- ✅ **🔍 Busca por Tags** - Filtre tarefas por categoria
+- ✅ **📅 Datas de Criação/Conclusão** - Rastreamento temporal
+- ✅ **Migração Automática** - Tarefas antigas ganham novos campos automaticamente
+- ✅ **Arquivo stats.json** - Estatísticas persistentes separadas
+
+### v2.1.0 - Sistema de Persistência
 - ✅ **Persistência com JSON** - Suas tarefas são salvas automaticamente!
 - ✅ Carregamento automático ao iniciar o programa
 - ✅ Salvamento automático após cada ação
